@@ -1,0 +1,44 @@
+{
+	"schemaVersion": 1,
+	"id": "debug-delights",
+	"version": "${version}",
+	"name": "Debug Delights",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/debug-delights/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+            "io.github.jacg311.DebugDelights"
+		],
+		"client": [
+			"io.github.jacg311.DebugDelightsClient"
+		],
+		"preLaunch": [
+			"com.llamalad7.mixinextras.MixinExtrasBootstrap::init"
+		]
+	},
+	"mixins": [
+		"debug-delights.mixins.json",
+		{
+			"config": "debug-delights.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.14.13",
+		"minecraft": "~1.19.3",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
