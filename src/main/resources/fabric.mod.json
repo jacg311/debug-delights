@@ -20,9 +20,6 @@
 		],
 		"client": [
 			"io.github.jacg311.DebugDelightsClient"
-		],
-		"preLaunch": [
-			"com.llamalad7.mixinextras.MixinExtrasBootstrap::init"
 		]
 	},
 	"mixins": [
@@ -36,7 +33,8 @@
 		"fabricloader": ">=0.14.13",
 		"minecraft": "~1.19.3",
 		"java": ">=17",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"com_github_llamalad7_mixinextras": "*"
 	},
 	"suggests": {
 		"another-mod": "*"

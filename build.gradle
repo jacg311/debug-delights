@@ -12,7 +12,6 @@ group = project.maven_group
 
 repositories {
 	maven { url "https://maven.enjarai.nl/mirrors" }
-	maven { url 'https://jitpack.io' }
 }
 
 loom {
@@ -27,6 +26,7 @@ loom {
 
 }
 
+
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -35,9 +35,9 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-	include implementation("com.github.LlamaLad7:MixinExtras:0.2.0-beta.4")
-	annotationProcessor("com.github.LlamaLad7:MixinExtras:0.2.0-beta.4")
+	include implementation("com.github.LlamaLad7.mixinextras:mixinextras-fabric:0.2.0-beta.6")
+	annotationProcessor("com.github.LlamaLad7.mixinextras:mixinextras-fabric:0.2.0-beta.6")
+	clientAnnotationProcessor("com.github.LlamaLad7.mixinextras:mixinextras-fabric:0.2.0-beta.6")
 }
 
 processResources {
