@@ -37,15 +37,15 @@ public class TagGroupLoaderMixin {
             @Local Resource resource,
             @Local JsonElement jsonElement
             ) {
-        if (DebugDelights.CONFIG.shouldLogReplacedTagContents) {
+        if (DebugDelights.CONFIG.shouldLogReplacedTagContents()) {
             DebugDelights.LOGGER.error("Tag {} has been replaced by data pack \"{}\"!", tagName, resource.getResourcePackName());
-            DebugDelights.LOGGER.error("New contents of tag:\n{}", DebugDelights.GSON.toJson(jsonElement));
+            DebugDelights.LOGGER.error("New contents of tag:\n{}", jsonElement);
         }
     }
 
     @Inject(method = "loadTags", at = @At("RETURN"))
     private void debugdelights$dumpTagsToZip(ResourceManager resourceManager, CallbackInfoReturnable<Map<Identifier, List<TagGroupLoader.TrackedEntry>>> cir) {
-        if (!DebugDelights.CONFIG.shouldDumpTags) return;
+        if (!DebugDelights.CONFIG.shouldDumpTags()) return;
 
         Path path = FabricLoader.getInstance().getGameDir().resolve("dumped_tags.zip");
         try (ZipOutputStream zipOutputStream = new ZipOutputStream(Files.newOutputStream(path))){
@@ -57,7 +57,7 @@ public class TagGroupLoaderMixin {
                 TagFile tagFile = new TagFile(entry.getValue().stream().map(TagGroupLoader.TrackedEntry::entry).toList(), false);
 
                 JsonElement result = TagFile.CODEC.encodeStart(JsonOps.INSTANCE, tagFile).result().orElse(new JsonObject());
-                byte[] data = DebugDelights.GSON.toJson(result).getBytes(StandardCharsets.UTF_8);
+                byte[] data = result.toString().getBytes(StandardCharsets.UTF_8);
                 zipOutputStream.write(data);
 
             }
